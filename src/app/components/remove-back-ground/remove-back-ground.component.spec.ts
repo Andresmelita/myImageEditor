@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RemoveBackGroundComponent } from './remove-back-ground.component';
 
 describe('RemoveBackGroundComponent', () => {
