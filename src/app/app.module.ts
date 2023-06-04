@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RemoveBackGroundComponent } from './components/remove-back-ground/remove-back-ground.component';
@@ -12,7 +11,7 @@ import { RemoveBackGroundComponent } from './components/remove-back-ground/remov
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
