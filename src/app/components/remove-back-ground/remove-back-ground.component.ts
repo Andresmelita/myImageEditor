@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RestService } from 'src/app/rest.service';
 import { CloudinaryImage } from '@cloudinary/url-gen';
+import { Cloudinary } from '@cloudinary/url-gen';
+import { backgroundRemoval } from '@cloudinary/url-gen/actions/effect';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-remove-back-ground',
@@ -9,11 +12,27 @@ import { CloudinaryImage } from '@cloudinary/url-gen';
   providers: [ RestService ]
 })
 export class RemoveBackGroundComponent {
+  original = true
+
+
 
   public preview: string = '';
   public archives: any = []
   public loading: boolean = false
+  public processing: boolean = true
+  public urlImageModified: any = []
+  public tries: number = 0
+  public intervalId: any
   constructor(private sanitizer: DomSanitizer, private uploadService: RestService) { }
+
+  public cloudinary = new Cloudinary({
+    cloud: {
+      cloudName: 'andresmelita'
+    },
+    url: {
+      secure: true
+    }
+  })
 
   captureFile(event: any) {
     const capturedFile = event.target.files[0]
@@ -60,6 +79,16 @@ export class RemoveBackGroundComponent {
             this.loading = false;
             console.log(response);
           }
+          // const {public_id: publicId} = response;
+          // const imageWithoutBackground = this.cloudinary.image(publicId).effect(backgroundRemoval());
+          // if (!imageWithoutBackground) {
+          //   clearInterval(this.intervalId)
+          //   this.intervalId = setInterval(()=>{
+          //     this.tries++
+          //   }, 5000)
+          // } else {
+          //   this.urlImageModified.push(imageWithoutBackground.toURL())
+          // }console.log(imageWithoutBackground)
         })
     } catch (e) {
       this.loading = false

@@ -1,5 +1,5 @@
 <section class="mb-[50px]" style="pointer-events: auto;">
-    <div
+    <div [ngClass]="{}"
         class="shadow-xl border-dashed relative border-[4px] border-gray-400 rounded-lg aspect-video w-[400px] flex items-center justify-center flex-col bg-[white]">
         <div *ngIf="!preview" class="h-full text-bold text-white text-xl cursor-pointer">
             <input type="file" class="file:w-full file:h-[220px] opacity-0 z-10" (change)="captureFile($event)">
@@ -8,14 +8,24 @@
                 <strong class="text-lg text-gray-400 font-medium family-jost">or drop here!</strong>
             </div>
         </div>
-        <div *ngIf="preview" class="">
-            <img [src]="preview" alt="" class="w-full h-[100%] rounded-lg">
+        <div *ngIf="preview" class="original">
+                <img [src]="preview" alt="" class="w-full h-[100%] rounded-lg ">
         </div>
+        <!-- <div *ngIf="preview" class="edit">
+            <img [src]="preview" alt="" class="w-full h-[100%] rounded-lg">
+        </div> -->
+        <!-- <div *ngIf="urlImageModified[0]" class="bg-[url('./assets/images/back.png')] bg-cover w-full">
+            <img [src]="urlImageModified[0]" class="w-full h-[100%] rounded-lg">
+    </div> -->
     </div>
-    <div *ngIf="preview" class="justify-center flex pt-[30px]">
+    <div *ngIf="preview" class="justify-center flex pt-[30px] gap-2">
         <button type="button" [disabled]="loading" (click)="onUpload()"
             class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
             {{(loading) ? 'Loading...' : 'Upload file'}}
         </button>
+        <!-- <a type="button" *ngIf="urlImageModified[0]" [href]="urlImageModified[0]" 
+        class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
+        Descargar
+        </a> -->
     </div>
 </section>
