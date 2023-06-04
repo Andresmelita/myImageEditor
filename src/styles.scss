@@ -9,5 +9,22 @@
     font-family: 'Jost', sans-serif;
 }
 
+.original {
+    background-image: url(./assets/images/back.png);
+    position: relative;
+    background-size: cover; 
+    width: 100%;
+}
+
+.edit {
+    background-image: url(./assets/images/back.png);
+    position: absolute;
+    background-size: cover; 
+    width: 100%;
+    filter: brightness(.5);
+    margin-left: 100px;
+}
+
+
 @tailwind components;
 @tailwind utilities;
