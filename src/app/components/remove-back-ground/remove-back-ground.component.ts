@@ -1,21 +1,18 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RestService } from 'src/app/rest.service';
-import { CloudinaryImage } from '@cloudinary/url-gen';
 import { Cloudinary } from '@cloudinary/url-gen';
-import { backgroundRemoval } from '@cloudinary/url-gen/actions/effect';
-import { interval } from 'rxjs';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-remove-back-ground',
   templateUrl: './remove-back-ground.component.html',
-  providers: [ RestService ]
+  providers: [ RestService ],
+  standalone: true,
+  imports: [ FormsModule, ReactiveFormsModule, CommonModule],
 })
 export class RemoveBackGroundComponent {
-  original = true
-
-
-
   public preview: string = '';
   public archives: any = []
   public loading: boolean = false
