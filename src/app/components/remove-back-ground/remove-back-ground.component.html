@@ -3,7 +3,7 @@
         <div class="shadow-xl  relative aspect-video w-[400px] flex items-center justify-center flex-col bg-[white]">
             <div *ngIf="!preview"
                 class="border-dashed h-full border-[4px] border-gray-400 rounded-lg text-bold text-white text-xl cursor-pointer">
-                <input type="file" class="file:w-full file:h-[220px] opacity-0 z-10" (change)="captureFile($event)">
+                    <input id="myImage" name="myImage" type="file" class="file:w-full file:h-[220px] opacity-0 z-10" (change)="captureFile($event)" (change)="onUpload()">
                 <div class="-mt-[220px] justify-center flex flex-col items-center h-full w-full">
                     <img src="./assets/images/iconAdd.png" class="w-[70px] hover:animate-pulse" />
                     <strong class="text-lg text-gray-400 font-medium family-jost">or drop here!</strong>
@@ -16,8 +16,12 @@
                 <img [src]="urlImageModified[0]" class="w-full h-[100%] rounded-lg">
             </div>
         </div>
-        <div *ngIf="preview" class="justify-center flex pt-[30px] gap-2">
-            <button type="button" [disabled]="loading"
+        <div class="justify-center flex pt-[30px] gap-2">
+            <label *ngIf="!preview" for="myImage"
+                class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
+                {{(loading) ? 'Loading...' : 'Submit Image'}}
+            </label>
+            <button *ngIf="preview" type="button" [disabled]="loading"
                 class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
                 {{(loading) ? 'Loading...' : 'Apply filter'}}
             </button>
@@ -27,8 +31,8 @@
             </a> -->
         </div>
     </div>
-    <div *ngIf="preview" class="text-white flex rounded-lg family-jost">
-        <mat-accordion class="w-[400px]">
+    <div *ngIf="preview" class="text-[#5f31b3]  flex rounded-lg family-jost">
+        <mat-accordion class="w-[400px] shadow-xl">
             <mat-expansion-panel class="" expanded="">
                 <mat-expansion-panel-header class="">
                     <mat-panel-title class="py-2">
