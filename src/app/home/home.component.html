@@ -32,9 +32,17 @@
             </path>
         </svg>
     </section>
-    <section class="border-[#00000046] top-0 pt-[100px] flex flex-col justify-center items-center">
-        <app-remove-back-ground></app-remove-back-ground>
+    <section
+        class="gap-10 border-[#00000046] w-full top-0 pt-[100px] flex justify-center">
+        <div class="w-full justify-center flex pb-10">
+            <app-remove-back-ground></app-remove-back-ground>
+            <!-- <button type="button" (click)="addItem()"
+            class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
+            Upload file
+        </button> -->
+        </div>
+
         <img src="./assets/images/blue-flower.png"
-            class="md:left-[100px] md:w-[300px] w-[200px] left-[0px] absolute bottom-[0px]" />
+            class="md:left-[50px] md:w-[300px] w-[200px] left-[0px] absolute bottom-[0px]" />
     </section>
 </body>

@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RestService } from 'src/app/rest.service';
 import { Cloudinary } from '@cloudinary/url-gen';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import {MatExpansionModule} from '@angular/material/expansion'
 
 @Component({
   selector: 'app-remove-back-ground',
   templateUrl: './remove-back-ground.component.html',
   providers: [ RestService ],
   standalone: true,
-  imports: [ FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [ FormsModule, ReactiveFormsModule, CommonModule, MatExpansionModule],
 })
 export class RemoveBackGroundComponent {
+  panelOpenState = false
   public preview: string = '';
   public archives: any = []
   public loading: boolean = false
@@ -30,6 +32,7 @@ export class RemoveBackGroundComponent {
       secure: true
     }
   })
+
 
   captureFile(event: any) {
     const capturedFile = event.target.files[0]

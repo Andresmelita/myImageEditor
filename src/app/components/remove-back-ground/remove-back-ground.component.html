@@ -1,36 +1,211 @@
-<section class="mb-[50px]" style="pointer-events: auto;">
-    <div
-        class="shadow-xl  relative  aspect-video w-[400px] flex items-center justify-center flex-col bg-[white]">
-        <div *ngIf class="border-dashed h-full border-[4px] border-gray-400 rounded-lg text-bold text-white text-xl cursor-pointer">
-            <input type="file" class="file:w-full file:h-[220px] opacity-0 z-10" (change)="captureFile($event)">
-            <div class="-mt-[220px] justify-center flex flex-col items-center h-full w-full">
-                <img src="./assets/images/iconAdd.png" class="w-[70px] hover:animate-pulse" />
-                <strong class="text-lg text-gray-400 font-medium family-jost">or drop here!</strong>
+<section class="w-full flex md:flex-nowrap flex-wrap md:gap-8 justify-center">
+    <div class="mb-[50px]" style="pointer-events: auto;">
+        <div class="shadow-xl  relative aspect-video w-[400px] flex items-center justify-center flex-col bg-[white]">
+            <div *ngIf="!preview"
+                class="border-dashed h-full border-[4px] border-gray-400 rounded-lg text-bold text-white text-xl cursor-pointer">
+                <input type="file" class="file:w-full file:h-[220px] opacity-0 z-10" (change)="captureFile($event)">
+                <div class="-mt-[220px] justify-center flex flex-col items-center h-full w-full">
+                    <img src="./assets/images/iconAdd.png" class="w-[70px] hover:animate-pulse" />
+                    <strong class="text-lg text-gray-400 font-medium family-jost">or drop here!</strong>
+                </div>
+            </div>
+            <div *ngIf="preview" class="original">
+                <img [src]="preview" alt="" class="w-full h-[100%] rounded-lg">
+            </div>
+            <div *ngIf="urlImageModified[0]" class="bg-[url('./assets/images/back.png')] bg-cover w-full">
+                <img [src]="urlImageModified[0]" class="w-full h-[100%] rounded-lg">
             </div>
         </div>
-        <div *ngIf="!preview" class="original">
-                <img src="../../../assets/images/mountain.jpg" alt="" class="w-full h-[100%] rounded-lg ">
-
+        <div *ngIf="preview" class="justify-center flex pt-[30px] gap-2">
+            <button type="button" [disabled]="loading"
+                class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
+                {{(loading) ? 'Loading...' : 'Apply filter'}}
+            </button>
+            <!-- <a type="button" *ngIf="urlImageModified[0]" [href]="urlImageModified[0]"
+                class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
+                Descargar
+            </a> -->
         </div>
-        <div *ngIf="!preview" class="original">
-            <img src="../../../assets/images/mountain.jpg" alt="" class="w-full h-[100%] rounded-lg brightness-50">
-            
-        </div>
-        <!-- <div *ngIf="preview" class="edit">
-            <img [src]="preview" alt="" class="w-full h-[100%] rounded-lg">
-        </div> -->
-        <!-- <div *ngIf="urlImageModified[0]" class="bg-[url('./assets/images/back.png')] bg-cover w-full">
-            <img [src]="urlImageModified[0]" class="w-full h-[100%] rounded-lg">
-    </div> -->
     </div>
-    <div *ngIf="preview" class="justify-center flex pt-[30px] gap-2">
-        <button type="button" [disabled]="loading" (click)="onUpload()"
-            class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
-            {{(loading) ? 'Loading...' : 'Upload file'}}
-        </button>
-        <!-- <a type="button" *ngIf="urlImageModified[0]" [href]="urlImageModified[0]" 
-        class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
-        Descargar
-        </a> -->
+    <div *ngIf="preview" class="text-white flex bg-[#3a6db1a4] rounded-lg family-jost">
+        <mat-accordion class="w-[400px]">
+            <mat-expansion-panel class="" expanded="">
+                <mat-expansion-panel-header class="">
+                    <mat-panel-title class="py-2">
+                        Saturation
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="flex flex-row mt-[16px] gap-2 h-[160px] flex-wrap justify-center content-center">
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-200">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-170">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-140">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-120">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-90">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-60">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-20">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-0">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="py-2">
+                        opacity
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="flex flex-row mt-[16px] gap-2 h-[160px] flex-wrap justify-center content-center">
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="py-2">
+                        Brightness
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="flex flex-row mt-[16px] gap-2 h-[160px] flex-wrap justify-center content-center">
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                        <img *ngIf="preview" [src]="preview" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                        <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
+                            class="w-[75px] h-[75px] rounded-lg bg-contain">
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
 </section>
