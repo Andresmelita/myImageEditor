@@ -25,6 +25,41 @@
     margin-left: 100px;
 }
 
+:root {
+    --image-comparison-slider-width: min(100%, 400px);
+}
+
+#image-comparison-slider {
+    width: var(--image-comparison-slider-width);
+    cursor: col-resize;
+    position: relative;
+}
+
+#image-comparison-slider img {
+    display: block;
+    object-fit: cover;
+    width: var(--image-comparison-slider-width);
+    height: auto;
+    max-height: 100%;
+    pointer-events: none;
+    user-select: none;
+}
+
+#image-comparison-slider .img-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#image-comparison-slider .img-wrapper img {
+    position: absolute;
+    top: 0;
+    right: 0%;
+    height: 100%;
+}
 
 @tailwind components;
 @tailwind utilities;

@@ -70,15 +70,18 @@ export class RemoveBackGroundComponent {
       this.loading = true;
       const file_data = this.archives[0];
       const formData = new FormData();
-      formData.append('file', file_data);
-      formData.append('upload_preset', 'angular_project')
-      formData.append("cloud_name", "andresmelita");
-      this.uploadService.uploadImage(formData).
-        subscribe((response: any)=>{
-          if(response){
-            this.loading = false;
-            console.log(response);
-          }
+      setInterval(()=>{
+        this.loading= false
+      }, 3000)
+      // formData.append('file', file_data);
+      // formData.append('upload_preset', 'angular_project')
+      // formData.append("cloud_name", "andresmelita");
+      // this.uploadService.uploadImage(formData).
+      //   subscribe((response: any)=>{
+      //     if(response){
+      //       this.loading = false;
+      //       console.log(response);
+      //     }
           // const {public_id: publicId} = response;
           // const imageWithoutBackground = this.cloudinary.image(publicId).effect(backgroundRemoval());
           // if (!imageWithoutBackground) {
@@ -89,7 +92,7 @@ export class RemoveBackGroundComponent {
           // } else {
           //   this.urlImageModified.push(imageWithoutBackground.toURL())
           // }console.log(imageWithoutBackground)
-        })
+        // })
     } catch (e) {
       this.loading = false
       console.log('ERROR', e)
