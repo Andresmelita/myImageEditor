@@ -10,12 +10,17 @@
                 </div>
             </div>
             <div *ngIf="preview" class="shadow-lg" id="image-comparison-slider">
-                <div class="pt-[5px] pb-4 px-2 rounded-t-md absolute bg-[#5f31b377] text-white -top-[30px] text-[14px]">Original</div>
-                <div class="pt-[5px] pb-4 px-2 rounded-t-md absolute bg-[#5f31b3] text-white left-[62px] -top-[30px] text-[14px]">Filter</div>
+                <!-- <div class="pt-[5px] pb-4 px-2 rounded-t-md absolute bg-[#5f31b377] text-white -top-[30px] text-[14px]">Original</div>
+                <div class="pt-[5px] pb-4 px-2 rounded-t-md absolute bg-[#5f31b3] text-white left-[62px] -top-[30px] text-[14px]">Filter</div> -->
                 <img [src]="preview" alt="before" class="bg-[url('./assets/images/back.png')] rounded-lg">
-                <div class="img-wrapper top-[0px]">
-                    <img [src]="preview" alt="after" class="bg-[url('./assets/images/back.png')] rounded-lg brightness-50" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+                <img [src]="preview" alt="after" class="bg-[url('./assets/images/back.png')] rounded-lg brightness-50 absolute top-0 right-0" [style]="inputPolygon">
+                <div class="absolute inset-y-0" [style]="inputLeft">
+                    <div class="relative h-full">
+                        <div class="absolute insset-y-0 bg-[white] -ml-px h-full w-0.5"></div>
+                        <div onmousedown="handleMouseMove()" class="h-8 w-8 -ml-4 absolute top-1/2 -mt-4 shadow-2xl rounded-full bg-white"></div>
+                    </div>
                 </div>
+                
                 <!-- <div alt="after" class="bg-[url('./assets/images/back.png')] bg-cover w-full rounded-lg">
                     <img [src]="preview" class="w-full h-[100%] rounded-lg saturate-0">
                 </div> -->
@@ -118,49 +123,49 @@
                 <div class="flex flex-row mt-[16px] gap-2 h-[160px] flex-wrap justify-center content-center">
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-200">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-180">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-160">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-150">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-125">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-100">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-80">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-60">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
@@ -177,49 +182,49 @@
                 <div class="flex flex-row mt-[16px] gap-2 h-[160px] flex-wrap justify-center content-center">
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-200">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-150">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-125">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-110">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-100">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-90">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-75">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
                     <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
                         <img *ngIf="preview" [src]="preview" alt=""
-                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute">
+                            class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-50">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>

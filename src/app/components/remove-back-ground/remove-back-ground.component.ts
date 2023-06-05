@@ -14,6 +14,33 @@ import {MatExpansionModule} from '@angular/material/expansion'
   imports: [ FormsModule, ReactiveFormsModule, CommonModule, MatExpansionModule],
 })
 export class RemoveBackGroundComponent {
+  // public imageContainer: HTMLDivElement = ; 
+  public imageRevealFraq: number = 0.5
+  public inputPolygon: string = `clip-path: polygon(0 0, ${this.imageRevealFraq * 100}% 0, ${this.imageRevealFraq * 100}% 100%, 0 100%);`
+  public inputLeft: string = `left: ${this.imageRevealFraq * 100}%`
+  
+  
+  public slide = (xPosition: number): void => {
+    this.imageRevealFraq = xPosition
+    
+  }
+  public firstValue = null;
+
+  public handleMouseDown = (): void => {
+    window.onmousemove = this.handleMouseMove
+    window.onmouseup = this.handleMouseUp
+  }
+  public handleMouseMove = (event: MouseEvent): void => {
+    console.log(event.clientX)
+  }
+  public handleMouseUp = (): void => {
+    window.onmousemove = this.firstValue;
+    window.onmouseup = this.firstValue
+  }
+
+
+
+
   panelOpenState = false
   public preview: string = '';
   public archives: any = []
