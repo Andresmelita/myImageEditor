@@ -5,6 +5,10 @@
     filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.6));
 }
 
+.text-shadow-light {
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.4));
+}
+
 .family-jost {
     font-family: 'Jost', sans-serif;
 }
@@ -79,17 +83,29 @@
 
 .mat-expansion-panel {
     appearance: none;
-    background-color: #3165b37c;
+    background-color: #317fb37c;
     color: #ffffff;
-
+    font-family: 'Jost', sans-serif;
 }
 
-.mat-panel-title {
-    color: #ffffff;
+.mat-expansion-panel:focus {
+    appearance: none;
+    background-color: transparent;
 }
+
+.mat-expansion-panel-header {
+    appearance: none;
+    background-color: transparent;
+}
+
+.mat-expansion-panel-header:focus {
+    appearance: none;
+    background-color: transparent;
+}
+
 
 @tailwind components;
 @tailwind utilities;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;}

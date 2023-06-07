@@ -46,10 +46,10 @@
                 class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
                 {{(loading) ? 'Loading...' : 'Submit Image'}}
             </label>
-            <button *ngIf="preview" type="button" [disabled]="loading"
+            <!-- <button *ngIf="preview" type="button" [disabled]="loading"
                 class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
                 {{(loading) ? 'Loading...' : 'Apply filter'}}
-            </button>
+            </button> -->
             <!-- <a type="button" *ngIf="urlImageModified[0]" [href]="urlImageModified[0]"
                 class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
                 Descargar
@@ -60,7 +60,7 @@
         <mat-accordion class="w-[400px] mat-accordion ">
             <mat-expansion-panel class="shadow-lg" expanded="">
                 <mat-expansion-panel-header class="">
-                    <mat-panel-title class="py-2 text-[#fff]">
+                    <mat-panel-title class="py-2 text-[#fff] family-jost text-[16px] text-shadow-light px-1">
                         Saturation
                     </mat-panel-title>
                     <mat-panel-description>
@@ -135,7 +135,7 @@
             </mat-expansion-panel>
             <mat-expansion-panel class="shadow-lg">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="py-2">
+                    <mat-panel-title class="py-2 text-[#fff] family-jost text-[16px] text-shadow-light px-1">
                         Contrast
                     </mat-panel-title>
                     <mat-panel-description>
@@ -202,7 +202,7 @@
             </mat-expansion-panel>
             <mat-expansion-panel class="shadow-lg">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="py-2">
+                    <mat-panel-title class="py-2 text-[#fff] family-jost text-[16px] text-shadow-light px-1">
                         Brightness
                     </mat-panel-title>
                     <mat-panel-description>
