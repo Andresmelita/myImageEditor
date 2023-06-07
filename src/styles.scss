@@ -81,6 +81,20 @@
     right: -2px;
 }
 
+.checkType {
+    cursor: pointer;
+    appearance: none;
+    background-color: #317fb37c;
+    top: -30px;
+    height: 30px;
+}
+
+.checkType:checked {
+    background-color: #317fb3cc;
+    top: -30px;
+    height: 30px;
+}
+
 .mat-expansion-panel {
     appearance: none;
     background-color: #317fb37c;

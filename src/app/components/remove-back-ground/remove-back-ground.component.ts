@@ -32,6 +32,10 @@ export class RemoveBackGroundComponent implements DoCheck {
     this.inputPolygon = `clip-path: polygon(0 0, ${this.imageRevealFraq * 100}% 0, ${this.imageRevealFraq * 100}% 100%, 0 100%);`
     this.inputLeft = `left: ${this.imageRevealFraq * 100}%`
   }
+
+  changePolygon(number: number){
+    this.imageRevealFraq = number
+  }
   
   public slide = (xPosition: number): void => {
     this.imageRevealFraq = xPosition
