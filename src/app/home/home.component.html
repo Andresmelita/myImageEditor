@@ -13,10 +13,14 @@
                 <!-- <img src="./assets/images/blue-leaf.png" width="300" class="mr-[400px] -mt-[130px] absolute"/> -->
             </div>
             <div class="flex justify-center p-6">
-                <button
+                <button *ngIf="!letsGo" (click)="letsGoClick()"
                     class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[24px] px-4 py-2">
                     Let's start
                 </button>
+                <!-- <button *ngIf="letsGo" (click)="letsGoClick()"
+                class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[24px] px-4 py-2">
+                Inicio
+            </button> -->
             </div>
         </div>
         <svg id="wave" style="transform:rotate(0deg); transition: 0.3s" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -32,17 +36,41 @@
             </path>
         </svg>
     </section>
-    <section
-        class="gap-10 border-[#00000046] w-full top-0 pt-[90px] flex justify-center">
-        <div class="z-30 w-full justify-center flex pb-10">
+    <section class="gap-10 border-[#00000046] w-full top-0 pt-[90px] flex justify-center">
+        <div *ngIf="letsGo" class="z-30 w-full justify-center flex pb-10">
             <app-remove-back-ground></app-remove-back-ground>
-            <!-- <button type="button" (click)="addItem()"
-            class="cursor-pointer family-jost hover:animate-pulse flex justify-center bg-[#5f31b3] border-[#06427ade] border-[2px] rounded-full text-bold text-white text-[18px] px-3 py-1">
-            Upload file
-        </button> -->
+            <!-- <div class="z-30 w-full justify-center flex pb-10 bg-slate-300">
+                <img src="./assets/images/blue-leaf.png"
+                    class="z-0 md:left-[30px] md:w-[190px] lg:flex hidden w-[150px] absolute" />
+            </div> -->
         </div>
+        <div *ngIf="!letsGo" class="z-30 w-full justify-center h-full flex pb-10 flex-wrap">
+            <div class="sm:w-[430px] w-[380px]  pl-[30px] sm:pb-[100px] pb-[50px]">
+                <div class="family-jost font-medium text-[24px] pb-[20px]">What’s your favorite filter? </div>
+                <div class="font-normal text-[16px] family-jost pb-[16px]">Inspired by various visual styles, choose the edition you like best!</div>
+                <ol class="family-jost pl-[4px] pb-[14px] text-[16px]">
+                    <li><span class="font-semibold">1. </span>Choose from your gallery the image you want to edit.</li>
+                    <li><span class="font-semibold">2. </span>Select the filter in the drop-down panel</li>
+                    <li><span class="font-semibold">3. </span>Compare original and edited image</li>
+                </ol>
+                
+            </div>
+            <div class="relative w-[720px] h-[200px]">
+                <img src="./assets/images/varita.png" alt=""
+                class="flex z-30 md:w-[100px] w-[70px] absolute top-[50px] sm:right-[40px] right-[90px]" />
+                <img src="./assets/images/magia.png" alt=""
+                class="flex z-30 md:w-[80px] w-[60px] absolute -top-[30px] md:left-[100px] left-[70px]" />
+                <img src="./assets/images/filter2.jpg" alt=""
+                class="flex z-20 md:w-[300px] w-[220px] absolute shadow-2xl rounded-lg md:top-[80px] sm:top-[20px] top-[0px] md:left-[60px] left-[100px] border-[#fff] border-[5px]" />
+                <!-- <img src="./assets/images/filter3.jpg" alt=""
+                class="flex z-10 w-[200px] absolute shadow-2xl rounded-lg top-[60px] left-[80px]" /> -->
+                <img src="./assets/images/edition.jpg" alt=""
+                class="sm:flex z-0 md:w-[500px] w-[350px] md:left-[170px] hidden left-[210px] -top-[30px] absolute rotate-12" />
+            </div>
 
-        <img src="./assets/images/blue-leaf.png"
-            class="z-0 md:left-[30px] md:w-[190px] lg:flex hidden w-[150px] absolute" />
+        </div>
+        <img  *ngIf="letsGo" src="./assets/images/blue-leaf.png" alt=""
+            class="z-0 md:left-[40px] md:w-[190px] lg:flex hidden w-[130px] absolute" />
+
     </section>
 </body>

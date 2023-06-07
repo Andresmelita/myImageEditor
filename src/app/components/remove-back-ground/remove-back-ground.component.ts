@@ -60,6 +60,7 @@ export class RemoveBackGroundComponent implements DoCheck {
 
   panelOpenState = false
   public preview: string = '';
+
   public archives: any = []
   public loading: boolean = false
   public processing: boolean = true
