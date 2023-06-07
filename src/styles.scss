@@ -77,8 +77,9 @@
     right: -2px;
 }
 
-.mat-accordion {
+.mat-expansion-panel {
     appearance: none;
+    background-color: rgba(45, 114, 204, 0.63)
 }
 
 @tailwind components;
