@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, DoCheck, OnInit} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RestService } from 'src/app/rest.service';
 import { Cloudinary } from '@cloudinary/url-gen';
@@ -13,16 +13,29 @@ import {MatExpansionModule} from '@angular/material/expansion'
   standalone: true,
   imports: [ FormsModule, ReactiveFormsModule, CommonModule, MatExpansionModule],
 })
-export class RemoveBackGroundComponent {
+export class RemoveBackGroundComponent implements DoCheck {
+  
+
+  public filterActive: string = 'saturate(2);'
+  public inputFilter: string = `filter: ${this.filterActive}`
+
+  changeFilter(addFilter: string) {
+    this.filterActive = addFilter
+  }
   // public imageContainer: HTMLDivElement = ; 
   public imageRevealFraq: number = 0.5
   public inputPolygon: string = `clip-path: polygon(0 0, ${this.imageRevealFraq * 100}% 0, ${this.imageRevealFraq * 100}% 100%, 0 100%);`
   public inputLeft: string = `left: ${this.imageRevealFraq * 100}%`
   
+  ngDoCheck(): void {
+    this.inputFilter = `filter: ${this.filterActive}`
+    this.inputPolygon = `clip-path: polygon(0 0, ${this.imageRevealFraq * 100}% 0, ${this.imageRevealFraq * 100}% 100%, 0 100%);`
+    this.inputLeft = `left: ${this.imageRevealFraq * 100}%`
+  }
   
   public slide = (xPosition: number): void => {
     this.imageRevealFraq = xPosition
-    
+
   }
   public firstValue = null;
 

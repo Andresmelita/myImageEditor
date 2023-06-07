@@ -3,7 +3,8 @@
         <div class="shadow-xl w-[400px] rounded-lg flex aspect-video items-center justify-center flex-col bg-[white]">
             <div *ngIf="!preview"
                 class="border-dashed h-full border-[4px] rounded-lg text-bold text-white text-xl cursor-pointer">
-                    <input id="myImage" name="myImage" type="file" class="file:w-full file:h-[220px] opacity-0 z-10" (change)="captureFile($event)" (change)="onUpload()">
+                <input id="myImage" name="myImage" type="file" class="file:w-full file:h-[220px] opacity-0 z-10"
+                    (change)="captureFile($event)" (change)="onUpload()">
                 <div class="-mt-[220px] justify-center flex flex-col items-center h-full w-full">
                     <img src="./assets/images/iconAdd.png" class="w-[70px] hover:animate-pulse" />
                     <strong class="text-lg text-gray-400 font-medium family-jost">or drop here!</strong>
@@ -12,15 +13,19 @@
             <div *ngIf="preview" class="shadow-lg" id="image-comparison-slider">
                 <!-- <div class="pt-[5px] pb-4 px-2 rounded-t-md absolute bg-[#5f31b377] text-white -top-[30px] text-[14px]">Original</div>
                 <div class="pt-[5px] pb-4 px-2 rounded-t-md absolute bg-[#5f31b3] text-white left-[62px] -top-[30px] text-[14px]">Filter</div> -->
-                <img [src]="preview" alt="before" class="bg-[url('./assets/images/back.png')] rounded-lg">
-                <img [src]="preview" alt="after" class="bg-[url('./assets/images/back.png')] rounded-lg brightness-50 absolute top-0 right-0" [style]="inputPolygon">
+                <img [src]="preview" alt="before" class="bg-[url('./assets/images/back.png')] rounded-lg"
+                    [style]="inputFilter">
+                <img [src]="preview" alt="after"
+                    class="bg-[url('./assets/images/back.png')] rounded-lg absolute top-0 right-0"
+                    [style]="inputPolygon">
                 <div class="absolute inset-y-0" [style]="inputLeft">
                     <div class="relative h-full">
                         <div class="absolute insset-y-0 bg-[white] -ml-px h-full w-0.5"></div>
-                        <div onmousedown="handleMouseMove()" class="h-8 w-8 -ml-4 absolute top-1/2 -mt-4 shadow-2xl rounded-full bg-white"></div>
+                        <div onmousedown="handleMouseMove()"
+                            class="h-8 w-8 -ml-4 absolute top-1/2 -mt-4 shadow-2xl rounded-full bg-white"></div>
                     </div>
                 </div>
-                
+
                 <!-- <div alt="after" class="bg-[url('./assets/images/back.png')] bg-cover w-full rounded-lg">
                     <img [src]="preview" class="w-full h-[100%] rounded-lg saturate-0">
                 </div> -->
@@ -62,49 +67,65 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="flex flex-row mt-[16px] gap-2 h-[160px] flex-wrap justify-center content-center">
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer"
+                        (click)="changeFilter('saturate(2)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" checked />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-200">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer"
+                        (click)="changeFilter('saturate(1.7)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-170">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer"
+                        (click)="changeFilter('saturate(1.4)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-140">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer"
+                        (click)="changeFilter('saturate(1.2)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-120">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer"
+                        (click)="changeFilter('saturate(0.9)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-90">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer"
+                        (click)="changeFilter('saturate(0.6)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-60">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer"
+                        (click)="changeFilter('saturate(0.2)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-20">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer"
+                        (click)="changeFilter('saturate(0)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute saturate-0">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
@@ -121,49 +142,57 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="flex flex-row mt-[16px] gap-2 h-[160px] flex-wrap justify-center content-center">
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('contrast(2)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-200">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('contrast(1.8)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-180">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('contrast(1.6)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-160">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('contrast(1.5)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-150">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('contrast(1.25)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-125">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('contrast(1)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-100">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('contrast(0.8)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-80">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('contrast(0.6)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute contrast-60">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
@@ -180,49 +209,57 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="flex flex-row mt-[16px] gap-2 h-[160px] flex-wrap justify-center content-center">
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('brightness(2)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-200">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('brightness(1.5)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-150">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('brightness(1.25)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-125">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('brightness(1.1)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-110">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('brightness(1)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-100">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('brightness(0.9)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-90">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('brightness(0.75)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-75">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-contain">
                     </div>
-                    <div class="w-[75px] h-[75px] rounded-lg cursor-pointer">
+                    <div class="w-[75px] h-[75px] relative rounded-lg cursor-pointer" (click)="changeFilter('brightness(0.5)')">
+                        <input *ngIf="preview" type="radio" class="absolute myCheck z-50" name="filter" />
                         <img *ngIf="preview" [src]="preview" alt=""
                             class="w-[75px] h-[75px] rounded-lg bg-auto absolute brightness-50">
                         <img *ngIf="preview" src="../../../assets/images/back.png" alt=""
