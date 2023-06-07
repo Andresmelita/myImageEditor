@@ -79,7 +79,13 @@
 
 .mat-expansion-panel {
     appearance: none;
-    background-color: rgba(45, 114, 204, 0.63)
+    background-color: #3165b37c;
+    color: #ffffff;
+
+}
+
+.mat-panel-title {
+    color: #ffffff;
 }
 
 @tailwind components;
